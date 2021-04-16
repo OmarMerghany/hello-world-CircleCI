@@ -1,1 +1,2 @@
+[![CircleCI](https://circleci.com/gh/circleci/circleci-docs/tree/hello-world-CircleCI.svg?style=svg)](https://circleci.com/gh/circleci/circleci-docs/?branch=circleci-project-setup)
 # hello-world-CircleCI
