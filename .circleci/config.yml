@@ -2,6 +2,11 @@
 version: 2.1
 # Use a package of configuration called an orb.
 # Orchestrate or schedule a set of jobs
+commands:
+  print_pipeline_id:
+    description: " prints the Circle CI Workflow ID from its environment variable"
+    steps:
+      - run: echo ${CIRCLE_WORKFLOW_ID}
 jobs:
   save_hello_world_output:
     docker:
@@ -19,6 +24,11 @@ jobs:
       - attach_workspace:
           at: ~/
       - run: cat ~/output.txt
+  new_job:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - print_pipeline_id
     
   
 workflows:
@@ -30,4 +40,4 @@ workflows:
       - print_output_file:
           requires:
             - save_hello_world_output
-      
+      - new_job     
