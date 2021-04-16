@@ -29,8 +29,17 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - print_pipeline_id
-    
-  
+  my_job:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - run: return 1
+      - run:
+          name: on error
+          command: echo "Hello Error!"
+          when: on_fail
+
+
 workflows:
   # Name the workflow "welcome"
   my_workflow:
@@ -40,4 +49,5 @@ workflows:
       - print_output_file:
           requires:
             - save_hello_world_output
-      - new_job     
+      - new_job
+      - my_job     
