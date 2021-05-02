@@ -46,6 +46,7 @@ commands:
             fi
 
 jobs:
+<<<<<<< HEAD
   build-frontend:
     docker:
       - image: circleci/node:13.8.0
@@ -484,3 +485,26 @@ workflows:
       - cleanup:
           requires: [cloudfront-update]
  
+=======
+  configure_infrastructure:
+    docker:
+    - image: python:3.7-alpine3.11
+    steps:
+      - checkout
+      - add_ssh_keys:
+          fingerprints: ["29:46:04:9c:65:1e:1c:d1:0e:8a:65:0a:c1:7c:f1:11"]
+      - run: 
+          name: Install dependencies
+          command: |
+            apk add --update ansible # install the dependencies needed
+      - run: 
+          name: Configure server
+          command: |
+            ansible-playbook -i inventory main-remote.yml
+
+workflows:
+  my_workflow:
+    # Run the my_workflow/run job in its own container
+    jobs:
+      - configure_infrastructure
+>>>>>>> 5760b6f6db3b4e32fb1ba45bd956e38a88da97b5
