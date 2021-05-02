@@ -484,7 +484,6 @@ workflows:
       - cleanup:
           requires: [cloudfront-update]
  
-=======
   configure_infrastructure:
     docker:
     - image: python:3.7-alpine3.11
@@ -506,4 +505,3 @@ workflows:
     # Run the my_workflow/run job in its own container
     jobs:
       - configure_infrastructure
->>>>>>> 5760b6f6db3b4e32fb1ba45bd956e38a88da97b5
